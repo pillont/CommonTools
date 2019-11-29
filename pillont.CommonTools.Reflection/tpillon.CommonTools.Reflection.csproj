@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>B&amp;D Amiens Pôle Microsoft</Authors>
+		<Company>Business &amp; Decision</Company>
+		<Version>1.2.1</Version>
+		<PackageProjectUrl>https://dev.azure.com/CPN-Microsoft/BetD.CommonTools</PackageProjectUrl>
+		<RepositoryUrl>https://dev.azure.com/CPN-Microsoft/_git/BetD.CommonTools</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIconUrl>https://www.businessdecision.fr/images/GBI_BDFRANCE/favicon/apple-touch-icon.png</PackageIconUrl>
+		<PackageId>BetD.CommonTools.Reflection</PackageId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="2.1.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\pillont.CommonTools.Core\pillont.CommonTools.Core.csproj" />
+	</ItemGroup>
+</Project>

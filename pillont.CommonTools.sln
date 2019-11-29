@@ -1,0 +1,90 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pillont.CommonTools.RestFullApi", "pillont.CommonTools.RestFullApi\pillont.CommonTools.RestFullApi.csproj", "{96D8E793-837E-485B-8A4E-517E00F58702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pillont.CommonTools.RestFullApi.EntityFramework", "pillont.CommonTools.RestFullApi.EntityFramework\pillont.CommonTools.RestFullApi.EntityFramework.csproj", "{6BA40645-E026-4266-A25D-7C5F9AD64A8A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.RestFullApi.EntityFrameworkCore", "pillont.CommonTools.RestFullApi.EntityFrameworkCore\pillont.CommonTools.RestFullApi.EntityFrameworkCore.csproj", "{67959D18-F939-4218-84BC-68BCFFF7383D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{F68B0E95-04A3-4CFF-8DC4-BCCD100318D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tpillon.CommonTools.Reflection", "pillont.CommonTools.Reflection\tpillon.CommonTools.Reflection.csproj", "{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.Core", "pillont.CommonTools.Core\pillont.CommonTools.Core.csproj", "{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.MSDependencyInjectionTools", "pillont.CommonTools.MSDependencyInjectionTools\pillont.CommonTools.MSDependencyInjectionTools.csproj", "{EAD4D140-E192-42A8-95B2-438C41D8158F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.Storage", "pillont.CommonTools.Storage\pillont.CommonTools.Storage.csproj", "{CFC2B13C-C7D2-453A-8D1B-0B128F933E5F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.Storage.FileSystem", "pillont.CommonTools.Storage.FileSystem\pillont.CommonTools.Storage.FileSystem.csproj", "{CEB6BAAD-FA1E-4C52-A17C-3B22A0B2105F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.Storage.SFTP", "pillont.CommonTools.Storage.SFTP\pillont.CommonTools.Storage.SFTP.csproj", "{94CB90D5-9558-42C2-9E43-F345F1D8A207}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FilesStorage", "FilesStorage", "{BA2EF378-0216-4E6B-8D70-F605C4BE8FDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96D8E793-837E-485B-8A4E-517E00F58702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D8E793-837E-485B-8A4E-517E00F58702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D8E793-837E-485B-8A4E-517E00F58702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D8E793-837E-485B-8A4E-517E00F58702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BA40645-E026-4266-A25D-7C5F9AD64A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BA40645-E026-4266-A25D-7C5F9AD64A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BA40645-E026-4266-A25D-7C5F9AD64A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BA40645-E026-4266-A25D-7C5F9AD64A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67959D18-F939-4218-84BC-68BCFFF7383D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67959D18-F939-4218-84BC-68BCFFF7383D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67959D18-F939-4218-84BC-68BCFFF7383D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67959D18-F939-4218-84BC-68BCFFF7383D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD4D140-E192-42A8-95B2-438C41D8158F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD4D140-E192-42A8-95B2-438C41D8158F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD4D140-E192-42A8-95B2-438C41D8158F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD4D140-E192-42A8-95B2-438C41D8158F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFC2B13C-C7D2-453A-8D1B-0B128F933E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC2B13C-C7D2-453A-8D1B-0B128F933E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC2B13C-C7D2-453A-8D1B-0B128F933E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC2B13C-C7D2-453A-8D1B-0B128F933E5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB6BAAD-FA1E-4C52-A17C-3B22A0B2105F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB6BAAD-FA1E-4C52-A17C-3B22A0B2105F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB6BAAD-FA1E-4C52-A17C-3B22A0B2105F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB6BAAD-FA1E-4C52-A17C-3B22A0B2105F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CB90D5-9558-42C2-9E43-F345F1D8A207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CB90D5-9558-42C2-9E43-F345F1D8A207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CB90D5-9558-42C2-9E43-F345F1D8A207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CB90D5-9558-42C2-9E43-F345F1D8A207}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{96D8E793-837E-485B-8A4E-517E00F58702} = {F68B0E95-04A3-4CFF-8DC4-BCCD100318D5}
+		{6BA40645-E026-4266-A25D-7C5F9AD64A8A} = {F68B0E95-04A3-4CFF-8DC4-BCCD100318D5}
+		{67959D18-F939-4218-84BC-68BCFFF7383D} = {F68B0E95-04A3-4CFF-8DC4-BCCD100318D5}
+		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
+		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
+		{EAD4D140-E192-42A8-95B2-438C41D8158F} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
+		{CFC2B13C-C7D2-453A-8D1B-0B128F933E5F} = {BA2EF378-0216-4E6B-8D70-F605C4BE8FDC}
+		{CEB6BAAD-FA1E-4C52-A17C-3B22A0B2105F} = {BA2EF378-0216-4E6B-8D70-F605C4BE8FDC}
+		{94CB90D5-9558-42C2-9E43-F345F1D8A207} = {BA2EF378-0216-4E6B-8D70-F605C4BE8FDC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A34EE479-6534-42CD-9924-4B161FBB4B8D}
+	EndGlobalSection
+EndGlobal

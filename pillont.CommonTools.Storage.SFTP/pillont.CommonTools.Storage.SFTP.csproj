@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Authors>B&amp;D Amiens Pôle Microsoft</Authors>
+		<Version>1.0.0</Version>
+		<Company>Business &amp; Decision</Company>
+		<Product />
+		<RepositoryUrl>https://dev.azure.com/CPN-Microsoft/_git/BetD.CommonTools</RepositoryUrl>
+		<PackageProjectUrl>https://dev.azure.com/CPN-Microsoft/BetD.CommonTools</PackageProjectUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIconUrl>https://www.businessdecision.fr/images/GBI_BDFRANCE/favicon/apple-touch-icon.png</PackageIconUrl>
+		<PackageId>BetD.CommonTools.Storage.SFTP</PackageId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SSH.NET" Version="2016.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\pillont.CommonTools.Core\pillont.CommonTools.Core.csproj" />
+		<ProjectReference Include="..\pillont.CommonTools.Storage\pillont.CommonTools.Storage.csproj" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+[submodule "AssertHelper"]
+	path = AssertHelper
+	url = git@github.com:pillont/AssertHelper.git
