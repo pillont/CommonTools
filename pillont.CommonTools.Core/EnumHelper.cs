@@ -14,8 +14,7 @@ namespace pillont.CommonTools.Core
         /// collect wanted attribute
         /// return string value
         /// </summary>
-        public static string GetDescription<TAttri>(this Enum value)
-            where TAttri : Attribute
+        public static string GetDescription(this Enum value)
         {
             var v_EnumValue = value.GetType().GetField(value.ToString());
 
@@ -26,43 +25,24 @@ namespace pillont.CommonTools.Core
             return attr.Description;
         }
 
-        public static string GetDescription(this Enum value)
-        {
-            return GetDescription<DescriptionAttribute>(value);
-        }
-
-        public static TEnum GetEnumOrDefaultByDescription<TEnum>(this string wantedStr)
-            where TEnum : Enum
-        {
-            return GetEnumOrDefaultByDescription<TEnum, DescriptionAttribute>(wantedStr);
-        }
-
         /// <summary>
         /// try to collect enum value with same description
         /// </summary>
         /// <return>default value if description not found</return>
-        public static TEnum GetEnumOrDefaultByDescription<TEnum, TAttri>(this string wantedStr) where TEnum : Enum
-            where TAttri : Attribute
+        public static TEnum GetEnumOrDefaultByDescription<TEnum>(this string wantedStr) where TEnum : Enum
         {
-            return GetAllEnumByDescription<TEnum, TAttri>(wantedStr)
+            return GetAllEnumByDescription<TEnum>(wantedStr)
                                                 .FirstOrDefault();
-        }
-
-        public static bool TryGetEnumByDescription<T>(this string wantedStr, out T result)
-            where T : Enum
-        {
-            return TryGetEnumByDescription<T, DescriptionAttribute>(wantedStr, out result);
         }
 
         /// <summary>
         /// try to collect enum value with same description
         /// </summary>
-        public static bool TryGetEnumByDescription<T, TAttri>(this string wantedStr, out T result) where T : Enum
-            where TAttri : Attribute
+        public static bool TryGetEnumByDescription<T>(this string wantedStr, out T result) where T : Enum
         {
             try
             {
-                result = GetAllEnumByDescription<T, TAttri>(wantedStr)
+                result = GetAllEnumByDescription<T>(wantedStr)
                                                             .First();
 
                 return true;
@@ -74,12 +54,11 @@ namespace pillont.CommonTools.Core
             }
         }
 
-        private static IEnumerable<T> GetAllEnumByDescription<T, TAttri>(string wantedStr) where T : Enum
-            where TAttri : Attribute
+        private static IEnumerable<T> GetAllEnumByDescription<T>(string wantedStr) where T : Enum
         {
             return Enum.GetValues(typeof(T))
                         .OfType<T>()
-                        .Where(p_Value => GetDescription<TAttri>(p_Value) == wantedStr);
+                        .Where(p_Value => GetDescription(p_Value) == wantedStr);
         }
     }
 }
