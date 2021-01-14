@@ -2,13 +2,14 @@
 <package>
 	<metadata>
 		<id>$id$</id>
-		<version>1.0.1</version>
+		<version>1.0.2</version>
 		<title>$title$</title>
 		<authors>pillont</authors>
 		<owners>pillont</owners>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>common helpers</description>
 		<releaseNotes>
+			1.0.2 add Enumerable and ForeachAsync
 			1.0.1 clean enum helper
 			1.0.0 Setup
 		</releaseNotes>
