@@ -39,21 +39,6 @@ namespace tpillon.CommonTools.Reflection.ReflectionCaches
                 return null;
         }
 
-        private void TryPopulateCache()
-        {
-            //quick test
-            if (m_CacheByFilter?.Count > 0)
-                return;
-
-            m_Locker.WaitFor(p_MillisecondsTimeout: 1500, p_Action: () =>
-            {
-                if (m_CacheByFilter?.Count > 0)
-                    return;
-
-                m_CacheByFilter = CollectToPopulateCache();
-            });
-        }
-
         private static IDictionary<string, Assembly> CollectToPopulateCache()
         {
             IDictionary<string, Assembly> v_Dic = new ConcurrentDictionary<string, Assembly>();
@@ -68,6 +53,21 @@ namespace tpillon.CommonTools.Reflection.ReflectionCaches
                 v_Dic.Add(v_Assembly.Value.GetName().Name, v_Assembly.Value);
 
             return v_Dic;
+        }
+
+        private void TryPopulateCache()
+        {
+            //quick test
+            if (m_CacheByFilter?.Count > 0)
+                return;
+
+            m_Locker.WaitFor(millisecondsTimeout: 1500, action: () =>
+            {
+                if (m_CacheByFilter?.Count > 0)
+                    return;
+
+                m_CacheByFilter = CollectToPopulateCache();
+            });
         }
     }
 }

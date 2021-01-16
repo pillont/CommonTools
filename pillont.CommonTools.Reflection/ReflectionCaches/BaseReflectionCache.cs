@@ -14,14 +14,14 @@ namespace tpillon.CommonTools.Reflection.ReflectionCaches
     public abstract class BaseReflectionCache<TFilter, TResult>
     {
         /// <summary>
-        /// Number of maximum items to store in cache
-        /// </summary>
-        private readonly int m_LimitCache = -1;
-
-        /// <summary>
         /// cache to update collect performance
         /// </summary>
         private readonly IDictionary<TFilter, TResult> m_CacheByFilter;
+
+        /// <summary>
+        /// Number of maximum items to store in cache
+        /// </summary>
+        private readonly int m_LimitCache = -1;
 
         /// <summary>
         /// semaphore locker to make <see cref="m_CacheByFilter"/> thread safe
@@ -93,7 +93,7 @@ namespace tpillon.CommonTools.Reflection.ReflectionCaches
             if (m_LimitCache < 1 && m_CacheByFilter.ContainsKey(p_Filter))
                 return;
 
-            m_DictionaryLocker.WaitFor(p_MillisecondsTimeout: 1500, p_Action: () =>
+            m_DictionaryLocker.WaitFor(millisecondsTimeout: 1500, action: () =>
             {
                 //clean cache if number of limit cache is reach
                 if (m_LimitCache > 0 && m_CacheByFilter.Count == m_LimitCache)

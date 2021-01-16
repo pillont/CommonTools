@@ -12,48 +12,60 @@ namespace pillont.CommonTools.Core.Parallel
     /// </summary>
     public static class SemaphoreExtension
     {
+        public static bool TryWaitFor<T>(this SemaphoreSlim semaphore, out T result, Func<T> action, int millisecondsTimeout = -1)
+        {
+            T res = default;
+            bool success = WaitFor(semaphore, () => { res = action(); }, millisecondsTimeout);
+
+            result = res;
+            return success;
+        }
+
         /// <summary>
         /// apply action between single secure wait/release
         /// </summary>
-        /// <param name="p_Semaphore">semaphore to apply wait and release</param>
-        /// <param name="p_Action">action to apply between single wait/release</param>
+        /// <param name="semaphore">semaphore to apply wait and release</param>
+        /// <param name="action">action to apply between single wait/release</param>
         /// <example>
         /// m_Semaphore.WaitFor(Action, timeOut)
         /// ===
         /// try { Wait / Action } finally { Release(1) }
         /// </example>
         /// <seealso cref="SemaphoreSlim.Wait(int)"/>
-        public static bool WaitFor(this SemaphoreSlim p_Semaphore, Action p_Action, int p_MillisecondsTimeout = -1)
+        public static bool WaitFor(this SemaphoreSlim semaphore, Action action, int millisecondsTimeout = -1)
         {
-            var v_Task = p_Semaphore.WaitForAsync(p_Action, p_MillisecondsTimeout);
-            v_Task.Wait();
+            var task = semaphore.WaitForAsync(action, millisecondsTimeout);
+            task.Wait();
 
-            return v_Task.Result;
+            return task.Result;
         }
 
         /// <summary>
         /// apply action between single secure wait/release in async process
         /// </summary>
-        /// <param name="p_Semaphore">semaphore to apply wait and release</param>
-        /// <param name="p_Action">action to apply between single wait/release</param>
+        /// <param name="semaphore">semaphore to apply wait and release</param>
+        /// <param name="action">action to apply between single wait/release</param>
         /// <example>
         /// m_Semaphore.WaitForAsync(Action, timeOut)
         /// ===
         /// try { Wait / Action } finally { Release(1) }
         /// </example>
         /// <seealso cref="SemaphoreSlim.WaitAsync(int)"/>
-        public static async Task<bool> WaitForAsync(this SemaphoreSlim p_Semaphore, Action p_Action, int p_MillisecondsTimeout = -1)
+        public static async Task<bool> WaitForAsync(this SemaphoreSlim semaphore, Action action, int millisecondsTimeout = -1)
         {
-            bool v_Res = await p_Semaphore.WaitAsync(p_MillisecondsTimeout);
-            if (v_Res == false)
+            bool res = await semaphore.WaitAsync(millisecondsTimeout);
+            if (!res)
+            {
                 return false;
+            }
+
             try
             {
-                p_Action?.Invoke();
+                action?.Invoke();
             }
             finally
             {
-                p_Semaphore.Release(1);
+                semaphore.Release(1);
             }
 
             return true;
@@ -62,26 +74,29 @@ namespace pillont.CommonTools.Core.Parallel
         /// <summary>
         /// apply async action between single secure wait/release in async process
         /// </summary>
-        /// <param name="p_Semaphore">semaphore to apply wait and release</param>
-        /// <param name="p_Action">action to apply between single wait/release</param>
+        /// <param name="semaphore">semaphore to apply wait and release</param>
+        /// <param name="action">action to apply between single wait/release</param>
         /// <example>
         /// m_Semaphore.WaitForAsync(Action, timeOut)
         /// ===
         /// try { Wait / Action } finally { Release(1) }
         /// </example>
         /// <seealso cref="SemaphoreSlim.WaitAsync(int)"/>
-        public static async Task<bool> WaitForAsync(this SemaphoreSlim p_Semaphore, Func<Task> p_Action, int p_MillisecondsTimeout = -1)
+        public static async Task<bool> WaitForAsync(this SemaphoreSlim semaphore, Func<Task> action, int millisecondsTimeout = -1)
         {
-            bool v_Res = await p_Semaphore.WaitAsync(p_MillisecondsTimeout);
-            if (v_Res == false)
+            bool res = await semaphore.WaitAsync(millisecondsTimeout);
+            if (!res)
+            {
                 return false;
+            }
+
             try
             {
-                await p_Action?.Invoke();
+                await action?.Invoke();
             }
             finally
             {
-                p_Semaphore.Release(1);
+                semaphore.Release(1);
             }
 
             return true;
