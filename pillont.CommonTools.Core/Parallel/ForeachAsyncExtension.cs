@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hellowork.BackOffice.Tools.Enumerables;
+using pillont.CommonTools.Core.Enumerables;
 
 namespace pillont.CommonTools.Core.Parallel
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Hellowork.BackOffice.Tools.Enumerables
+namespace pillont.CommonTools.Core.Enumerables
 {
     public static class DictionariesHelper
     {
