@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.Core.As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pillont.CommonTools.Core.AspNetCore.ExceptionsFilters", "pillont.CommonTools.Core.AspNetCore.ExceptionsFilters\pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.csproj", "{A92BD84D-D87E-4B7E-BF95-B19B47269507}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pillont.CommonTools.Core.Reflection", "pillont.CommonTools.Core.Reflection\pillont.CommonTools.Core.Reflection.csproj", "{27F8CDBD-A295-41F7-AAAE-09975FA49536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{A92BD84D-D87E-4B7E-BF95-B19B47269507}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A92BD84D-D87E-4B7E-BF95-B19B47269507}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A92BD84D-D87E-4B7E-BF95-B19B47269507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F8CDBD-A295-41F7-AAAE-09975FA49536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F8CDBD-A295-41F7-AAAE-09975FA49536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F8CDBD-A295-41F7-AAAE-09975FA49536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F8CDBD-A295-41F7-AAAE-09975FA49536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +103,7 @@ Global
 		{94CB90D5-9558-42C2-9E43-F345F1D8A207} = {BA2EF378-0216-4E6B-8D70-F605C4BE8FDC}
 		{CE50ABA4-D7E8-4263-ADBF-A333B3CFAED4} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
 		{A92BD84D-D87E-4B7E-BF95-B19B47269507} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
+		{27F8CDBD-A295-41F7-AAAE-09975FA49536} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A34EE479-6534-42CD-9924-4B161FBB4B8D}
