@@ -34,7 +34,7 @@ namespace pillont.CommonTools.Core.AspNetCore.Injection
         /// </summary>
         /// <typeparam name="StartupT">
         /// type du startup pour définir les injections
-        /// /!\ le startup doit avoir un ctor avec uniquement la config /!\
+        /// /!\ le startup doit avoir un ctor avec uniquement la config || ctor par defaut /!\
         /// </typeparam>
         /// <param name="configAction">
         /// action pour customiser la config
@@ -87,7 +87,11 @@ namespace pillont.CommonTools.Core.AspNetCore.Injection
             // appelle la fonction ConfigureServices du startup
             try
             {
-                startup = (StartupT)Activator.CreateInstance(typeof(StartupT), config);
+                var ctor = typeof(StartupT).GetConstructor(new[] { typeof(IConfiguration) });
+
+                startup = (StartupT)(ctor != null
+                        ? Activator.CreateInstance(typeof(StartupT), config)
+                        : Activator.CreateInstance(typeof(StartupT)));
             }
             catch (Exception e)
             {

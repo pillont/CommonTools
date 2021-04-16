@@ -6,6 +6,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>tool to apply injection in AspNetCore</Description>
 		<PackageTags>Injection AspNetCore</PackageTags>
+		<Version>1.2.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
