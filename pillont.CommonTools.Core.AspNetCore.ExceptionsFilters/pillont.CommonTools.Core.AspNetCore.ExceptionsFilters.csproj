@@ -7,7 +7,7 @@
     <Description>filters for ASP.Net API</Description>
     <PackageTags>filters middlewares asp API</PackageTags>
     <UserSecretsId>8983ba95-1e9f-428e-abd8-62eb056b2216</UserSecretsId>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
