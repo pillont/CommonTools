@@ -11,6 +11,7 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
     public class RequestLogsMiddleware
     {
         private const string RECEPTION_PREFIX = "RECEPTION REQUEST";
+        private const string ERROR_PREFIX = "FAILED REQUEST";
         private const string RESULT_PREFIX = "RESULT REQUEST";
         private readonly ILogger _logger;
         private readonly RequestLogFormater _formater;
@@ -48,18 +49,30 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
             }
 
             var executingData = CreateExecutingData(context);
+            
+            // CASE : Log executing 
+            _logger.LogInformation($"{RECEPTION_PREFIX} " +
+                $"IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine}" +
+                $"{_formater.FormatExecutingMessage(executingData)}");
 
             var resultData = new LogRequestResponse()
             {
                 Method = context.Request.Method,
-                Uri = $"{context.Request.Path} {context.Request.QueryString.ToString()}",
+                Uri = $"{context.Request.Path} {context.Request.QueryString}",
             };
 
             var sw = new Stopwatch();
             sw.Start();
 
-            // CASE : execution de la requete
-            await _next.Invoke(context);
+            try
+            {
+                // CASE : execution de la requete
+                await _next.Invoke(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"{ERROR_PREFIX} IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine}");
+            }
 
             sw.Stop();
             resultData.Duration = sw.Elapsed;
@@ -79,11 +92,7 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
                         return;
             }
 
-            // CASE : Log executing et executed
-            _logger.LogInformation($"{RECEPTION_PREFIX} " +
-                $"IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine}" +
-                $"{_formater.FormatExecutingMessage(executingData)}");
-
+            // CASE : Log executed
             LogExecutedRequest(resultData, context.TraceIdentifier);
         }
 
