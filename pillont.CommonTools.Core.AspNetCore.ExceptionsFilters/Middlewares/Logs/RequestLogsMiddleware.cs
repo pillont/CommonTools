@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
 {
@@ -17,14 +13,18 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
         private const string RECEPTION_PREFIX = "RECEPTION REQUEST";
         private const string RESULT_PREFIX = "RESULT REQUEST";
         private readonly ILogger _logger;
+        private readonly RequestLogFormater _formater;
         private readonly RequestDelegate _next;
-        private readonly SkipLogConfiguration _skipLogConfig;
+        
 
-        public RequestLogsMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IOptions<SkipLogConfiguration> skipLogConfig)
+        public RequestLogsMiddleware(
+            RequestLogFormater formater,
+            RequestDelegate next, 
+            ILogger<RequestLogsMiddleware> logger)
         {
+            _formater = formater;
             _next = next;
-            _skipLogConfig = skipLogConfig?.Value ?? throw new ArgumentNullException(nameof(skipLogConfig));
-            _logger = loggerFactory.CreateLogger<RequestLogsMiddleware>();
+            _logger = logger;
         }
 
         // SOURCE : https://github.com/dotnet/aspnetcore/issues/7795#issuecomment-466150359
@@ -32,9 +32,7 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
         public static Endpoint GetEndpoint(HttpContext context)
         {
             if (context == null)
-            {
                 throw new ArgumentNullException(nameof(context));
-            }
 
             return context.Features.Get<IEndpointFeature>()?.Endpoint;
         }
@@ -49,7 +47,7 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
                 return;
             }
 
-            var executingData = await CreateExecutingDataAsync(context);
+            var executingData = CreateExecutingData(context);
 
             var resultData = new LogRequestResponse()
             {
@@ -57,17 +55,14 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
                 Uri = $"{context.Request.Path} {context.Request.QueryString.ToString()}",
             };
 
-            resultData.Body = await context.ReadBodyDuringExecutionAsync(async () =>
-            {
-                var sw = new Stopwatch();
-                sw.Start();
+            var sw = new Stopwatch();
+            sw.Start();
 
-                // CASE : execution de la requete
-                await _next.Invoke(context);
+            // CASE : execution de la requete
+            await _next.Invoke(context);
 
-                sw.Stop();
-                resultData.Duration = sw.Elapsed;
-            });
+            sw.Stop();
+            resultData.Duration = sw.Elapsed;
 
             resultData.Headers = context.Response.Headers;
             resultData.StatusCode = context.Response.StatusCode;
@@ -81,16 +76,14 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
             {
                 var skipLogAttribute = endpoint.Metadata.GetMetadata<SkipLogAttribute>();
                 if (skipLogAttribute != null)
-                {
-                    if (!NeedLogFor(skipLogAttribute.FunctionName))
-                    {
                         return;
-                    }
-                }
             }
 
             // CASE : Log executing et executed
-            _logger.LogInformation($"{RECEPTION_PREFIX} IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine}{RequestLogFormater.FormatExecutingMessage(executingData)}");
+            _logger.LogInformation($"{RECEPTION_PREFIX} " +
+                $"IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine}" +
+                $"{_formater.FormatExecutingMessage(executingData)}");
+
             LogExecutedRequest(resultData, context.TraceIdentifier);
         }
 
@@ -100,30 +93,25 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
             return !context.Request.Path.IsSwaggerDisplayRequest();
         }
 
-        private async Task<LogRequestSending> CreateExecutingDataAsync(HttpContext context)
+        private LogRequestSending CreateExecutingData(HttpContext context)
         {
-            string bodyStr;
             var req = context.Request;
             req.EnableBuffering();
 
-            using (StreamReader reader = new StreamReader(req.Body, Encoding.UTF8, true, 1024, true))
-            {
-                bodyStr = await reader.ReadToEndAsync();
-                req.Body.Position = 0;
-            }
 
             return new LogRequestSending()
             {
-                Body = bodyStr,
                 Headers = context.Request.Headers,
                 Method = context.Request.Method,
-                Uri = $"{context.Request.Path} {context.Request.QueryString.ToString()}",
+                Uri = $"{context.Request.Path} {context.Request.QueryString}",
             };
         }
 
         private void LogExecutedRequest(LogRequestResponse data, string traceIdentifier)
         {
-            var message = $"{RESULT_PREFIX} IDENTIFIER: {traceIdentifier} {Environment.NewLine}{RequestLogFormater.FormatExecutedMessage(data)}";
+            var message = $"{RESULT_PREFIX} " +
+                $"IDENTIFIER: {traceIdentifier} {Environment.NewLine}" +
+                $"{_formater.FormatExecutedMessage(data)}";
 
             var statusCategory = data.StatusCode / 100;
             switch (statusCategory)
@@ -144,13 +132,6 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
                 default:
                     goto case 4;
             }
-        }
-
-        private bool NeedLogFor(string currentFunctionName)
-        {
-            return _skipLogConfig.ForceAllLogs
-                   || (!string.IsNullOrWhiteSpace(currentFunctionName)
-                      && _skipLogConfig.Except.Contains(currentFunctionName));
         }
     }
 }
