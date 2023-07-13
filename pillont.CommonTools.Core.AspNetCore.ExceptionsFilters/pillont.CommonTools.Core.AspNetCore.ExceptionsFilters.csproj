@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>pillont</Authors>
     <Description>filters for ASP.Net API</Description>
     <PackageTags>filters middlewares asp API</PackageTags>
     <UserSecretsId>8983ba95-1e9f-428e-abd8-62eb056b2216</UserSecretsId>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

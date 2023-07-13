@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<Authors>B&amp;D Amiens Pôle Microsoft</Authors>
-		<Version>1.5.0</Version>
-		<Company>Business &amp; Decision</Company>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>tpillon</Authors>
+    <Company>tpillon</Company>
+    <Version>1.5.0</Version>
 		<Product />
 		<RepositoryUrl>https://dev.azure.com/CPN-Microsoft/_git/BetD.CommonTools</RepositoryUrl>
 		<PackageProjectUrl>https://dev.azure.com/CPN-Microsoft/BetD.CommonTools</PackageProjectUrl>

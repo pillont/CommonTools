@@ -11,7 +11,7 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
     public class RequestLogsMiddleware
     {
         private const string RECEPTION_PREFIX = "RECEPTION REQUEST";
-        private const string ERROR_PREFIX = "FAILED REQUEST";
+    private const string ERROR_PREFIX = "FAILED REQUEST";
         private const string RESULT_PREFIX = "RESULT REQUEST";
         private readonly ILogger _logger;
         private readonly RequestLogFormater _formater;

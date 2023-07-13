@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>B&amp;D Amiens Pôle Microsoft</Authors>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>tpillon</Authors>
+    <Company>tpillon</Company>
     <Version>1.4.0</Version>
     <Company>Business &amp; Decision</Company>
     <Product />
