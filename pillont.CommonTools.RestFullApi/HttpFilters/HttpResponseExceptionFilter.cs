@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using pillont.CommonTools.RestFullApi.Exceptions;
+using pillont.CommonTools.Core.AspNetCore.Core.Exceptions;
 
 namespace pillont.CommonTools.RestFullApi.HttpFilters
 {

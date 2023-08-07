@@ -69,9 +69,12 @@ namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters.Middlewares.Logs
                 // CASE : execution de la requete
                 await _next.Invoke(context);
             }
-            catch (Exception ex)
+            catch 
             {
-                _logger.LogError($"{ERROR_PREFIX} IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine}");
+                sw.Stop();
+
+                _logger.LogError($"{ERROR_PREFIX} IDENTIFIER: {context.TraceIdentifier}{Environment.NewLine} Duration : {sw.Elapsed}");
+                throw;
             }
 
             sw.Stop();

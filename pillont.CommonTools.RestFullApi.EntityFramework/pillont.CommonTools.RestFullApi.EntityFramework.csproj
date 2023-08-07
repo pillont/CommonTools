@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.3.0" />
+    <PackageReference Include="pillont.CommonTools.Core.AspNetCore.Core" Version="1.0.0" />
     <PackageReference Include="Z.EntityFramework.Extensions" Version="4.0.20" />
   </ItemGroup>
 

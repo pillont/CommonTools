@@ -7,5 +7,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="pillont.CommonTools.Core.AspNetCore.Core" Version="1.0.0" />
   </ItemGroup>
 </Project>

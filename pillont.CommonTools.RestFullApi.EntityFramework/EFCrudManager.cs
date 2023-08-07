@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using pillont.CommonTools.RestFullApi.Exceptions;
+using pillont.CommonTools.Core.AspNetCore.Core.Exceptions;
 using pillont.CommonTools.RestFullApi.Logic;
 
 namespace pillont.CommonTools.RestFullApi.EntityFramework
