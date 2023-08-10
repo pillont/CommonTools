@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tpillon.CommonTools.Reflection", "pillont.CommonTools.Reflection\tpillon.CommonTools.Reflection.csproj", "{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.Core", "pillont.CommonTools.Core\pillont.CommonTools.Core.csproj", "{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pillont.CommonTools.MSDependencyInjectionTools", "pillont.CommonTools.MSDependencyInjectionTools\pillont.CommonTools.MSDependencyInjectionTools.csproj", "{EAD4D140-E192-42A8-95B2-438C41D8158F}"
@@ -25,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,7 +52,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{1BA3FFE4-0943-42B6-9F9A-EAA2DB64A89C} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
 		{04E7BD71-DB59-4B1E-ABB6-051FB84F4A3F} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
 		{EAD4D140-E192-42A8-95B2-438C41D8158F} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
 		{CE50ABA4-D7E8-4263-ADBF-A333B3CFAED4} = {4D1AEB95-2D22-4BB7-A0B7-60A39D3E9EFA}
