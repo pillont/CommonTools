@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using pillont.CommonTools.Core.AspNetCore.Core.Interfaces;
 using System;
-
 namespace pillont.CommonTools.Core.AspNetCore.ExceptionsFilters;
 
 /// <summary>
