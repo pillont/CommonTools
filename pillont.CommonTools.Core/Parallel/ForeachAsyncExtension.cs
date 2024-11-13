@@ -15,7 +15,7 @@ public static class ForeachAsyncExtension
     /// </summary>
     public static async Task<IReadOnlyCollection<TResult>> AggregateForeachAsync<TElement, TResult>(
         this IEnumerable<TElement> collection,
-        Func<TElement, Task<IEnumerable<TResult>>> action,
+        Func<TElement, CancellationToken, Task<IEnumerable<TResult>>> action,
         CancellationToken? cancellationToken = null)
     {
         var allLists = await ForeachAsync(collection, action, cancellationToken);
@@ -33,11 +33,13 @@ public static class ForeachAsyncExtension
     /// <returns></returns>
     public static async Task ForeachAsync<TElement>(
         this IEnumerable<TElement> collection,
-        Func<TElement, Task> action,
+        Func<TElement, CancellationToken, Task> action,
         CancellationToken? cancellationToken = null)
 
     {
-        await collection.ForeachAsync((e, i) => action(e), cancellationToken);
+        var token = cancellationToken ?? CancellationToken.None;
+
+        await collection.ForeachAsync((e, i) => action(e, token), token);
     }
     /// <summary>
     /// fait un foreach asynchrone sur une liste
@@ -48,15 +50,15 @@ public static class ForeachAsyncExtension
     /// <returns></returns>
     public static async Task ForeachAsync<TElement>(
         this IEnumerable<TElement> collection,
-        Func<TElement, int, Task> action,
+        Func<TElement, int, CancellationToken, Task> action,
         CancellationToken? cancellationToken = null)
     {
         var errors = new ConcurrentBag<Exception>();
-        await UnsafeForeachAsync(collection, async (e, i) =>
+        await UnsafeForeachAsync(collection, async (e, i, ct) =>
         {
             try
             {
-                await action(e, i);
+                await action(e, i, ct);
             }
             catch (Exception ex)
             {
@@ -82,14 +84,14 @@ public static class ForeachAsyncExtension
     /// <returns>liste de tous les résultats des actions exécutées sur chaque éléments de la liste source</returns>
     public static async Task<IReadOnlyCollection<TResult>> ForeachAsync<TElement, TResult>(
         this IEnumerable<TElement> collection,
-        Func<TElement, Task<TResult>> action,
+        Func<TElement, CancellationToken, Task<TResult>> action,
         CancellationToken? cancellationToken = null)
     {
         var result = new ConcurrentBag<KeyValuePair<int, TResult>>();
 
-        await ForeachAsync(collection, async (e, i) =>
+        await ForeachAsync(collection, async (e, i, ct) =>
         {
-            var r = await action(e);
+            var r = await action(e, ct);
             result.Add(new KeyValuePair<int, TResult>(i, r));
         }, cancellationToken);
 
@@ -110,21 +112,20 @@ public static class ForeachAsyncExtension
     /// <returns>liste de tous les résultats des actions exécutées sur chaque éléments de la liste source</returns>
     public static async Task<IReadOnlyCollection<TResult>> ForeachAsync<TElement, TResult>(
         this IEnumerable<TElement> collection,
-        Func<TElement, TResult> action,
+        Func<TElement, CancellationToken, TResult> action,
         CancellationToken? cancellationToken = null)
     {
-        return await collection.ForeachAsync(t => Task.FromResult(action(t)), cancellationToken);
+        return await collection.ForeachAsync((t, ct) => Task.FromResult(action(t, ct)), cancellationToken);
     }
 
     private static async Task UnsafeForeachAsync<TElement>(
         this IEnumerable<TElement> collection,
-        Func<TElement, int, Task> action,
+        Func<TElement, int, CancellationToken, Task> action,
         CancellationToken? cancellationToken = null)
     {
-        var allTasks = collection.Select((e, i) => action(e, i));
+        var token = cancellationToken ?? CancellationToken.None;
+        var allTasks = collection.Select((e, i) => action(e, i, token));
 
-        await Task.WhenAll(allTasks).WaitAsync(
-            cancellationToken ?? CancellationToken.None
-        );
+        await Task.WhenAll(allTasks).WaitAsync(token);
     }
 }
