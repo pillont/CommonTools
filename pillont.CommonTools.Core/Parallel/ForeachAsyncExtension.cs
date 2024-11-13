@@ -39,7 +39,7 @@ public static class ForeachAsyncExtension
     {
         var token = cancellationToken ?? CancellationToken.None;
 
-        await collection.ForeachAsync((e, i) => action(e, token), token);
+        await collection.ForeachAsync((e, i, t) => action(e, t), token);
     }
     /// <summary>
     /// fait un foreach asynchrone sur une liste
